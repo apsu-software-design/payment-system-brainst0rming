@@ -2,7 +2,7 @@
 //@author James Church
 
 import readlineSync = require('readline-sync'); //for easier repeated prompts
-import {PaymentSystemContext} from './payment_systems';
+import {PaymentSystemContext} from './PaymentSystemContext';
 
 /**
  * Function to run the UI
@@ -29,16 +29,30 @@ function showMainMenu(psc:PaymentSystemContext) {
     }
 
     switch(response) { //handle each response
-      case '1': showCreditCardPaymentMenu(psc); break;
-      case '2': showBankDraftPaymentMenu(psc); break;
-      case '3': showOnlinePaymentMenu(psc); break;
-      case '4': showOfflinePaymentMenu(psc); break;
-      default: console.log('Invalid option!');
+      case '1':
+	//showCreditCardPaymentMenu(psc);
+	psc.execute("CREDIT_CARD");
+        break;
+      case '2':
+	//showBankDraftPaymentMenu(psc);
+	psc.execute("BANK_DRAFT");
+        break;
+      case '3':
+	//showOnlinePaymentMenu(psc);
+	psc.execute("ONLINE");
+        break;
+      case '4':
+	//showOfflinePaymentMenu(psc);
+	psc.execute("OFFLINE");
+        break;
+      default:
+	console.log('Invalid option!');
     }
     console.log(''); //extra empty line for revisiting
   }
 }
 
+/*
 function showCreditCardPaymentMenu(psc:PaymentSystemContext) {
   console.log('Enter Credit Card Payment Details.');
 
@@ -109,4 +123,4 @@ function showOfflinePaymentMenu(psc:PaymentSystemContext) {
       console.log('The payment is invalid.');
   }
 }
-
+*/
